@@ -410,7 +410,7 @@ Banks already have 10M+ users on their apps. They are not replacing their app wi
 
 MIT — build on it, embed it, ship it.
 
-The incumbents sell shovels to the entire gold rush.
+The incumbents sell shovels to the entire 0gold rush.
 WiFiGuard is the one tool SA banks actually need right now.
 That's not a student project. That's the shovel they've been missing.
 
