@@ -67,8 +67,9 @@
   // This exact signature. No changes without telling Nelly.
   pub fn assess_network(
       bssid: String,
-      rssi: i32,
+      rssi_samples: Vec<i32>,
       rtt_ms: f64,
+      rtt_baseline_ms: f64,
       dns_clean: bool,
   ) -> NetworkVerdict
   ```
@@ -196,8 +197,12 @@ edition = "2021"
 [lib]
 crate-type = ["cdylib", "staticlib"]
 
+[features]
+default = ["bridge"]
+bridge = ["dep:flutter_rust_bridge"]
+
 [dependencies]
-flutter_rust_bridge = "2"
+flutter_rust_bridge = { version = "2", optional = true }
 
 [profile.release]
 opt-level = "z"      # Optimize for size
@@ -221,8 +226,9 @@ pub enum NetworkVerdict {
 #[frb(sync)]
 pub fn assess_network(
     bssid: String,
-    rssi: i32,
+    rssi_samples: Vec<i32>,
     rtt_ms: f64,
+    rtt_baseline_ms: f64,
     dns_clean: bool,
 ) -> NetworkVerdict {
     // MOCK — replace with real logic
