@@ -3,9 +3,18 @@ mod rssi;
 
 use bssid::{classify_bssid, BssidVerdict};
 use rssi::{analyse_rssi, RssiVerdict};
+
+#[cfg(feature = "bridge")]
 use flutter_rust_bridge::frb;
 
-#[frb(dart_metadata=("freezed"))]
+// Dummy macro for attribute parsing when bridge is disabled
+#[cfg(not(feature = "bridge"))]
+#[allow(unused_macros)]
+macro_rules! frb {
+    ($($tt:tt)*) => {};
+}
+
+#[cfg_attr(feature = "bridge", frb(dart_metadata=("freezed")))]
 #[derive(Debug, Clone, PartialEq)]
 pub enum NetworkVerdict {
     Safe,
@@ -13,7 +22,7 @@ pub enum NetworkVerdict {
     Blocked { reason: String },
 }
 
-#[frb(sync)]
+#[cfg_attr(feature = "bridge", frb(sync))]
 pub fn assess_network(
     bssid: String,
     rssi_samples: Vec<i32>,
@@ -155,7 +164,7 @@ mod tests {
         // Total suspect = 3 -> Blocked
         let verdict = assess_network(
             "11:22:33:44:55:66".to_string(), // Unknown
-            vec![-35, -55, -38, -60, -33],    // Suspicious RSSI (strong & high variance)
+            vec![-25, -45, -28, -50, -23],    // Suspicious RSSI (strong & high variance)
             45.0,                             // High RTT (threshold = max(10*2.5, 10+15) = 25)
             10.0,                             // Baseline exists
             true,                             // DNS clean
@@ -187,7 +196,7 @@ mod tests {
         // Total suspect = 2 -> Suspect
         let verdict2 = assess_network(
             "11:22:33:44:55:66".to_string(), // Unknown
-            vec![-35, -55, -38, -60, -33],    // Suspicious RSSI
+            vec![-25, -45, -28, -50, -23],    // Suspicious RSSI
             10.0,                             // Normal RTT
             10.0,                             // Baseline exists
             true,                             // DNS clean

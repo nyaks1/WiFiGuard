@@ -51,7 +51,8 @@ mod tests {
     #[test]
     fn test_portable_evil_twin() {
         // Strong signal, highly variable (backpack router)
-        let samples = vec![-35, -55, -38, -60, -33];
+        // Average = -34.2 dBm (> -40 dBm), Std Dev = 11.08 (> 8 dBm)
+        let samples = vec![-25, -45, -28, -50, -23];
         assert_eq!(analyse_rssi(&samples), RssiVerdict::Suspicious);
     }
 
