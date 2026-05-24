@@ -7,6 +7,11 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- Allows WiFi scanning -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- Required to check active network connection transport types (WiFi vs Mobile) -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Required to run TCP socket connection checks for RTT measurement -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:label="WiFiGuard"

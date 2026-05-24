@@ -22,7 +22,12 @@ class MainActivity : FlutterActivity() {
                     }
                     // Flutter calls "getRssiSamples" → Kotlin returns List<Int>
                     "getRssiSamples" -> {
-                        result.success(telemetry.getRssiSamples())
+                        Thread {
+                            val samples = telemetry.getRssiSamples()
+                            runOnUiThread {
+                                result.success(samples)
+                            }
+                        }.start()
                     }
                     // Flutter calls "isOnWifi" → Kotlin returns true or false
                     "isOnWifi" -> {
