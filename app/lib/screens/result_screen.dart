@@ -199,7 +199,7 @@ class ResultScreen extends StatelessWidget {
                     if (hasWarning) ...[
                       Container(
                         width: double.infinity,
-                        margin: const EdgeInsets.bottom,
+                        margin: const EdgeInsets.only(bottom: 12.0),
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: const Color(0xFF78350F).withOpacity(0.3),

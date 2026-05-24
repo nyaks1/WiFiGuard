@@ -222,3 +222,6 @@ __marimo__/
 
 # Visual Studio
 .vs/
+
+# Windows Alternate Data Streams
+*:Zone.Identifier
