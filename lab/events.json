@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "timestamp": "2026-05-24T09:46:27.267948+00:00",
+    "timestamp_local": "2026-05-24 09:46:27",
+    "action": "EVIL_TWIN_OFF",
+    "detail": "Rogue AP on wlan1 torn down. Network restored.",
+    "verdict_triggered": "SAFE",
+    "interface": "wlan1",
+    "ap_ip": "192.168.1.1"
+  },
+  {
+    "id": 2,
+    "timestamp": "2026-05-24T09:50:27.267948+00:00",
+    "timestamp_local": "2026-05-24 09:50:27",
+    "action": "EVIL_TWIN_ON",
+    "detail": "Rogue AP active on wlan1. DNS poisoning: SA banking domains \u2192 192.168.1.1",
+    "verdict_triggered": "BLOCKED",
+    "interface": "wlan1",
+    "ap_ip": "192.168.1.1"
+  },
+  {
+    "id": 3,
+    "timestamp": "2026-05-24T09:54:27.267948+00:00",
+    "timestamp_local": "2026-05-24 09:54:27",
+    "action": "EVIL_TWIN_OFF",
+    "detail": "Rogue AP on wlan1 torn down. Network restored.",
+    "verdict_triggered": "SAFE",
+    "interface": "wlan1",
+    "ap_ip": "192.168.1.1"
+  }
+]
